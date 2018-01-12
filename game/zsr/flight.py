@@ -31,7 +31,7 @@ pygame.init() #初始化pygame,为使用硬件做准备
 background = pygame.image.load(background_image_filename)
 font_file_width = background.get_rect().width
 font_file_height = background.get_rect().height
-print font_file_width,font_file_height
+# print font_file_width,font_file_height
 screen = pygame.display.set_mode((int(font_file_width*1.5),font_file_height))
 
 mouse_cursor_0 = pygame.image.load(mouse_image_filenames[0]).convert_alpha()
@@ -103,20 +103,14 @@ while True:
     #把光标画上去
 
     if(HIT_AREA(x,y,mouse_image_targets[ELE_NUM])):
-      screen.blit(mouse_cursors[ELE_NUM], (x, y))
+      screen.blit(mouse_cursors[ELE_NUM],(mouse_image_targets[ELE_NUM][0][0],mouse_image_targets[ELE_NUM][0][1]))
+      screen.blit(symbol_cursor, (0, 0))
+      pygame.display.update()
+      time.sleep(1)
       if(ELE_NUM not in FINISHED_ELE):
         FINISHED_ELE.append(ELE_NUM)
       tag = True
+      CHOSE_ELE = False
 
   time.sleep(0.1)
   pygame.display.update()
-  # if(len(FINISHED_ELE) == 4):
-  #   for i in FINISHED_ELE:
-  #       screen.blit(mouse_cursors[i], (mouse_image_targets[i][0][0],mouse_image_targets[i][0][1]))
-  #   screen.blit(win_bg_pic, (400, 500))
-  #   time.sleep(1)
-  #   pygame.display.update()
-  #   time.sleep(2)
-  #   break
-  #刷新一下画面
-
